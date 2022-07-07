@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
@@ -16,17 +16,41 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className='Header'>
-        <NavLink to='/' activeClassName='Header_link--active'>
+      <div className='header'>
+        <NavLink
+          to='/'
+          className='headerLink'
+          style={({ isActive }) => ({
+            background: isActive ? 'aliceblue' : '#dce4eb',
+          })}
+        >
           Accueil
         </NavLink>
-        <NavLink to='/sandwich' activeClassName='Header_link--active'>
+        <NavLink
+          to='/sandwich'
+          className='headerLink'
+          style={({ isActive }) => ({
+            background: isActive ? 'aliceblue' : '#dce4eb',
+          })}
+        >
           Sandwich
         </NavLink>
-        <NavLink to='/boisson' activeClassName='Header_link--active'>
+        <NavLink
+          to='/boisson'
+          className='headerLink'
+          style={({ isActive }) => ({
+            background: isActive ? 'aliceblue' : '#dce4eb',
+          })}
+        >
           Boisson
         </NavLink>
-        <NavLink to='/dessert' activeClassName='Header_link--active'>
+        <NavLink
+          to='/dessert'
+          className='headerLink'
+          style={({ isActive }) => ({
+            background: isActive ? 'aliceblue' : '#dce4eb',
+          })}
+        >
           Dessert
         </NavLink>
       </div>
@@ -35,51 +59,49 @@ function App() {
           <Route path='/' element={'Accueil'} exact />
           <Route
             path='/sandwich'
-            element={sandwiches.map((sandwitch) => (
-              <div>
-                {sandwitch.name}
-                <br />
-                {sandwitch.category}
-                <br />
-                Prix : {sandwitch.unitPrice}
-                <br />
-                Quantité : {sandwitch.quantity}
-                <br />
-                <br />
+            element={
+              <div className='carte'>
+                {sandwiches.map((sandwitch) => (
+                  <div className='carteItem'>
+                    <p>{sandwitch.name}</p>
+                    <p>Prix : {sandwitch.unitPrice} €</p>
+                    <p>Quantité : {sandwitch.quantity}</p>
+                    <button className='ajouter'>+</button>
+                  </div>
+                ))}
               </div>
-            ))}
+            }
           />
           <Route
             path='/boisson'
-            element={boissons.map((boisson) => (
-              <div>
-                {boisson.name}
-                <br />
-                {boisson.category}
-                <br />
-                Prix : {boisson.unitPrice}
-                <br />
-                Quantité : {boisson.quantity}
-                <br />
-                <br />
+            element={
+              <div className='carte'>
+                {boissons.map((boisson) => (
+                  <div className='carteItem'>
+                    <p>{boisson.name}</p>
+                    <p>Prix : {boisson.unitPrice} €</p>
+                    <p>Quantité : {boisson.quantity}</p>
+                    <button className='ajouter'>+</button>
+                  </div>
+                ))}
               </div>
-            ))}
+            }
           />
+
           <Route
             path='/dessert'
-            element={desserts.map((dessert) => (
-              <div>
-                {dessert.name}
-                <br />
-                {dessert.category}
-                <br />
-                Prix : {dessert.unitPrice}
-                <br />
-                Quantité : {dessert.quantity}
-                <br />
-                <br />
+            element={
+              <div className='carte'>
+                {boissons.map((dessert) => (
+                  <div className='carteItem'>
+                    <p>{dessert.name}</p>
+                    <p>Prix : {dessert.unitPrice} €</p>
+                    <p>Quantité : {dessert.quantity}</p>
+                    <button className='ajouter'>+</button>
+                  </div>
+                ))}
               </div>
-            ))}
+            }
           />
         </Routes>
       </div>
