@@ -192,7 +192,22 @@ const initialState = {
     },
   ],
 };
+
 // Comportement
-export default function (state = initialState, action = {}) {
-  return state;
-}
+
+const cartReducer = (state = initialState, action = {}) => {
+  switch (action.type) {
+    case 'ADD_CART':
+
+    case 'REMOVE_CART':
+
+    case 'ADD_QUANTITY':
+
+    case 'REMOVE_QUANTITY':
+
+    default:
+      return state;
+  }
+};
+
+export default cartReducer;

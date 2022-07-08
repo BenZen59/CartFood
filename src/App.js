@@ -1,4 +1,5 @@
 import './App.scss';
+import CartContainer from './CartContainer';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
@@ -66,7 +67,7 @@ function App() {
                     <p>{sandwitch.name}</p>
                     <p>Prix : {sandwitch.unitPrice} €</p>
                     <p>Quantité : {sandwitch.quantity}</p>
-                    <button className='ajouter'>+</button>
+                    <button className='ajouter'>Ajouter au panier</button>
                   </div>
                 ))}
               </div>
@@ -81,7 +82,7 @@ function App() {
                     <p>{boisson.name}</p>
                     <p>Prix : {boisson.unitPrice} €</p>
                     <p>Quantité : {boisson.quantity}</p>
-                    <button className='ajouter'>+</button>
+                    <button className='ajouter'>Ajouter au panier</button>
                   </div>
                 ))}
               </div>
@@ -97,13 +98,14 @@ function App() {
                     <p>{dessert.name}</p>
                     <p>Prix : {dessert.unitPrice} €</p>
                     <p>Quantité : {dessert.quantity}</p>
-                    <button className='ajouter'>+</button>
+                    <button className='ajouter'>Ajouter au panier</button>
                   </div>
                 ))}
               </div>
             }
           />
         </Routes>
+        <CartContainer />
       </div>
     </BrowserRouter>
   );
