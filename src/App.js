@@ -1,19 +1,16 @@
 import './App.scss';
-import CartContainer from './CartContainer';
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import cart from './cart.js';
 
-function App() {
-  const { cart: products } = useSelector((state) => state);
-  console.log(products);
+const mapStateToProps = (state) => ({
+  light: state,
+});
 
-  const sandwiches = products.filter(
-    (product) => product.category === 'Sandwich'
-  );
-
-  const boissons = products.filter((product) => product.category === 'Boisson');
-
-  const desserts = products.filter((product) => product.category === 'Dessert');
+function App({ light, dispatch }) {
+  const sandwiches = cart.filter((product) => product.category === 'Sandwich');
+  const boissons = cart.filter((product) => product.category === 'Boisson');
+  const desserts = cart.filter((product) => product.category === 'Dessert');
 
   return (
     <BrowserRouter>
@@ -67,7 +64,12 @@ function App() {
                     <p>{sandwitch.name}</p>
                     <p>Prix : {sandwitch.unitPrice} €</p>
                     <p>Quantité : {sandwitch.quantity}</p>
-                    <button className='ajouter'>Ajouter au panier</button>
+                    <button
+                      className='ajouter'
+                      onClick={() => dispatch({ type: 'ADD_CART' })}
+                    >
+                      Ajouter au panier
+                    </button>
                   </div>
                 ))}
               </div>
@@ -82,7 +84,12 @@ function App() {
                     <p>{boisson.name}</p>
                     <p>Prix : {boisson.unitPrice} €</p>
                     <p>Quantité : {boisson.quantity}</p>
-                    <button className='ajouter'>Ajouter au panier</button>
+                    <button
+                      className='ajouter'
+                      onClick={() => dispatch({ type: 'ADD_CART' })}
+                    >
+                      Ajouter au panier
+                    </button>
                   </div>
                 ))}
               </div>
@@ -93,22 +100,43 @@ function App() {
             path='/dessert'
             element={
               <div className='carte'>
-                {boissons.map((dessert) => (
+                {desserts.map((dessert) => (
                   <div className='carteItem'>
                     <p>{dessert.name}</p>
                     <p>Prix : {dessert.unitPrice} €</p>
                     <p>Quantité : {dessert.quantity}</p>
-                    <button className='ajouter'>Ajouter au panier</button>
+                    <button
+                      className='ajouter'
+                      onClick={() => dispatch({ type: 'ADD_CART' })}
+                    >
+                      Ajouter au panier
+                    </button>
                   </div>
                 ))}
               </div>
             }
           />
         </Routes>
-        <CartContainer />
+        <div className='cartZone'>
+          {light.map((event) => (
+            <div>
+              <p>{event.nom}</p>
+              <p>{event.age}</p>
+            </div>
+          ))}
+          <button
+            className='cancel'
+            onClick={() => dispatch({ type: 'CANCEL' })}
+          >
+            Annuler
+          </button>
+          <button className='pay' onClick={() => dispatch({ type: 'PAY' })}>
+            Valider et payer
+          </button>
+        </div>
       </div>
     </BrowserRouter>
   );
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
