@@ -1,13 +1,8 @@
 import './App.scss';
-import { connect } from 'react-redux';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import cart from './cart.js';
 
-const mapStateToProps = (state) => ({
-  light: state,
-});
-
-function App({ light, dispatch }) {
+function App() {
   const sandwiches = cart.filter((product) => product.category === 'Sandwich');
   const boissons = cart.filter((product) => product.category === 'Boisson');
   const desserts = cart.filter((product) => product.category === 'Dessert');
@@ -64,12 +59,7 @@ function App({ light, dispatch }) {
                     <p>{sandwitch.name}</p>
                     <p>Prix : {sandwitch.unitPrice} €</p>
                     <p>Quantité : {sandwitch.quantity}</p>
-                    <button
-                      className='ajouter'
-                      onClick={() => dispatch({ type: 'ADD_CART' })}
-                    >
-                      Ajouter au panier
-                    </button>
+                    <button className='ajouter'>Ajouter au panier</button>
                   </div>
                 ))}
               </div>
@@ -84,12 +74,7 @@ function App({ light, dispatch }) {
                     <p>{boisson.name}</p>
                     <p>Prix : {boisson.unitPrice} €</p>
                     <p>Quantité : {boisson.quantity}</p>
-                    <button
-                      className='ajouter'
-                      onClick={() => dispatch({ type: 'ADD_CART' })}
-                    >
-                      Ajouter au panier
-                    </button>
+                    <button className='ajouter'>Ajouter au panier</button>
                   </div>
                 ))}
               </div>
@@ -105,12 +90,7 @@ function App({ light, dispatch }) {
                     <p>{dessert.name}</p>
                     <p>Prix : {dessert.unitPrice} €</p>
                     <p>Quantité : {dessert.quantity}</p>
-                    <button
-                      className='ajouter'
-                      onClick={() => dispatch({ type: 'ADD_CART' })}
-                    >
-                      Ajouter au panier
-                    </button>
+                    <button className='ajouter'>Ajouter au panier</button>
                   </div>
                 ))}
               </div>
@@ -118,25 +98,12 @@ function App({ light, dispatch }) {
           />
         </Routes>
         <div className='cartZone'>
-          {light.map((event) => (
-            <div>
-              <p>{event.nom}</p>
-              <p>{event.age}</p>
-            </div>
-          ))}
-          <button
-            className='cancel'
-            onClick={() => dispatch({ type: 'CANCEL' })}
-          >
-            Annuler
-          </button>
-          <button className='pay' onClick={() => dispatch({ type: 'PAY' })}>
-            Valider et payer
-          </button>
+          <button className='cancel'>Annuler</button>
+          <button className='pay'>Valider et payer</button>
         </div>
       </div>
     </BrowserRouter>
   );
 }
 
-export default connect(mapStateToProps)(App);
+export default App;
