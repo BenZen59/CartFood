@@ -1,8 +1,10 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import cart from './cart.js';
+import Commande from './commande';
 
 function App() {
+  let commande = new Commande();
   const sandwiches = cart.filter((product) => product.category === 'Sandwich');
   const boissons = cart.filter((product) => product.category === 'Boisson');
   const desserts = cart.filter((product) => product.category === 'Dessert');
