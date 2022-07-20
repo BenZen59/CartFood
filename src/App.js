@@ -1,13 +1,28 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import cart from './cart.js';
 import Commande from './commande';
 
 function App() {
   let panier = new Commande();
+  const [cardList, setCardList] = useState([]);
   const sandwiches = cart.filter((product) => product.category === 'Sandwich');
   const boissons = cart.filter((product) => product.category === 'Boisson');
   const desserts = cart.filter((product) => product.category === 'Dessert');
+
+  useEffect(() => {
+    const newList = JSON.parse(localStorage.getItem('commande'));
+    if (newList) setCardList(newList);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cardList', JSON.stringify(cardList));
+  }, [cardList]);
+
+  function refreshPage() {
+    window.location.reload();
+  }
 
   return (
     <BrowserRouter>
@@ -63,13 +78,14 @@ function App() {
                     <p>Quantité : {sandwitch.quantity}</p>
                     <button
                       className='ajouter'
-                      onClick={() =>
+                      onClick={() => {
                         panier.add({
                           id: sandwitch.id,
                           name: sandwitch.name,
                           price: sandwitch.price,
-                        })
-                      }
+                        });
+                        refreshPage();
+                      }}
                     >
                       Ajouter au panier
                     </button>
@@ -89,13 +105,14 @@ function App() {
                     <p>Quantité : {boisson.quantity}</p>
                     <button
                       className='ajouter'
-                      onClick={() =>
+                      onClick={() => {
                         panier.add({
                           id: boisson.id,
                           name: boisson.name,
                           price: boisson.price,
-                        })
-                      }
+                        });
+                        refreshPage();
+                      }}
                     >
                       Ajouter au panier
                     </button>
@@ -116,13 +133,14 @@ function App() {
                     <p>Quantité : {dessert.quantity}</p>
                     <button
                       className='ajouter'
-                      onClick={() =>
+                      onClick={() => {
                         panier.add({
                           id: dessert.id,
                           name: dessert.name,
                           price: dessert.price,
-                        })
-                      }
+                        });
+                        refreshPage();
+                      }}
                     >
                       Ajouter au panier
                     </button>
@@ -133,7 +151,17 @@ function App() {
           />
         </Routes>
         <div className='cartZone'>
-          {/* affichage panier ici */}
+          {cardList.map((event) => {
+            return (
+              <div>
+                <p>{event.name}</p>
+                <p>Prix : {event.price} €</p>
+                <p>Quantité : {event.quantity}</p>
+                <button className='quantity'>-</button>
+                <button className='quantity'>+</button>
+              </div>
+            );
+          })}
           <button className='cancel'>Annuler</button>
           <button className='pay'>Valider et payer</button>
         </div>
