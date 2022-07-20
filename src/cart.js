@@ -129,37 +129,37 @@ const cart = [
     id: 22,
     name: 'Fleurs Orange',
     category: 'Dessert',
-    unitPrice: 50,
+    price: 50,
   },
   {
     id: 23,
     name: 'Fleurs Orange',
     category: 'Dessert',
-    unitPrice: 50,
+    price: 50,
   },
   {
     id: 24,
     name: 'Fleurs Orange',
     category: 'Dessert',
-    unitPrice: 50,
+    price: 50,
   },
   {
     id: 25,
     name: 'Fleurs Orange',
     category: 'Dessert',
-    unitPrice: 50,
+    price: 50,
   },
   {
     id: 26,
     name: 'Fleurs Orange',
     category: 'Dessert',
-    unitPrice: 50,
+    price: 50,
   },
   {
     id: 27,
     name: 'Fleurs Orange',
     category: 'Dessert',
-    unitPrice: 50,
+    price: 50,
   },
 ];
 

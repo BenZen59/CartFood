@@ -77,9 +77,8 @@ function App() {
               <div className='carte'>
                 {sandwiches.map((sandwitch) => (
                   <div className='carteItem'>
-                    <p>{sandwitch.name}</p>
+                    <p className='bold'>{sandwitch.name}</p>
                     <p>Prix : {sandwitch.price} €</p>
-                    <p>Quantité : {sandwitch.quantity}</p>
                     <button
                       className='ajouter'
                       onClick={() => {
@@ -104,9 +103,8 @@ function App() {
               <div className='carte'>
                 {boissons.map((boisson) => (
                   <div className='carteItem'>
-                    <p>{boisson.name}</p>
+                    <p className='bold'>{boisson.name}</p>
                     <p>Prix : {boisson.price} €</p>
-                    <p>Quantité : {boisson.quantity}</p>
                     <button
                       className='ajouter'
                       onClick={() => {
@@ -132,9 +130,8 @@ function App() {
               <div className='carte'>
                 {desserts.map((dessert) => (
                   <div className='carteItem'>
-                    <p>{dessert.name}</p>
+                    <p className='bold'>{dessert.name}</p>
                     <p>Prix : {dessert.price} €</p>
-                    <p>Quantité : {dessert.quantity}</p>
                     <button
                       className='ajouter'
                       onClick={() => {
@@ -155,10 +152,11 @@ function App() {
           />
         </Routes>
         <div className='cartZone'>
+          <p className='bold'>Votre commande </p>
           {cardList.map((event) => {
             return (
-              <div>
-                <p>{event.name}</p>
+              <div className='cartInCart'>
+                <p className='bold'>{event.name}</p>
                 <p>Prix : {panier.getTotalPrice()} €</p>
                 <p>Quantité : {event.quantity}</p>
                 <button
