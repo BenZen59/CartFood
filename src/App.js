@@ -4,7 +4,7 @@ import cart from './cart.js';
 import Commande from './commande';
 
 function App() {
-  let commande = new Commande();
+  let panier = new Commande();
   const sandwiches = cart.filter((product) => product.category === 'Sandwich');
   const boissons = cart.filter((product) => product.category === 'Boisson');
   const desserts = cart.filter((product) => product.category === 'Dessert');
@@ -59,9 +59,20 @@ function App() {
                 {sandwiches.map((sandwitch) => (
                   <div className='carteItem'>
                     <p>{sandwitch.name}</p>
-                    <p>Prix : {sandwitch.unitPrice} €</p>
+                    <p>Prix : {sandwitch.price} €</p>
                     <p>Quantité : {sandwitch.quantity}</p>
-                    <button className='ajouter'>Ajouter au panier</button>
+                    <button
+                      className='ajouter'
+                      onClick={() =>
+                        panier.add({
+                          id: sandwitch.id,
+                          name: sandwitch.name,
+                          price: sandwitch.price,
+                        })
+                      }
+                    >
+                      Ajouter au panier
+                    </button>
                   </div>
                 ))}
               </div>
@@ -74,9 +85,20 @@ function App() {
                 {boissons.map((boisson) => (
                   <div className='carteItem'>
                     <p>{boisson.name}</p>
-                    <p>Prix : {boisson.unitPrice} €</p>
+                    <p>Prix : {boisson.price} €</p>
                     <p>Quantité : {boisson.quantity}</p>
-                    <button className='ajouter'>Ajouter au panier</button>
+                    <button
+                      className='ajouter'
+                      onClick={() =>
+                        panier.add({
+                          id: boisson.id,
+                          name: boisson.name,
+                          price: boisson.price,
+                        })
+                      }
+                    >
+                      Ajouter au panier
+                    </button>
                   </div>
                 ))}
               </div>
@@ -90,9 +112,20 @@ function App() {
                 {desserts.map((dessert) => (
                   <div className='carteItem'>
                     <p>{dessert.name}</p>
-                    <p>Prix : {dessert.unitPrice} €</p>
+                    <p>Prix : {dessert.price} €</p>
                     <p>Quantité : {dessert.quantity}</p>
-                    <button className='ajouter'>Ajouter au panier</button>
+                    <button
+                      className='ajouter'
+                      onClick={() =>
+                        panier.add({
+                          id: dessert.id,
+                          name: dessert.name,
+                          price: dessert.price,
+                        })
+                      }
+                    >
+                      Ajouter au panier
+                    </button>
                   </div>
                 ))}
               </div>
@@ -100,6 +133,7 @@ function App() {
           />
         </Routes>
         <div className='cartZone'>
+          {/* affichage panier ici */}
           <button className='cancel'>Annuler</button>
           <button className='pay'>Valider et payer</button>
         </div>

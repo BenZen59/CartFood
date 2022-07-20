@@ -20,12 +20,12 @@ export default class Commande {
       product.quantity = 1;
       this.commande.push(product);
     }
-    this.saveCommande();
+    this.save();
   }
 
   remove(product) {
     this.commande = this.commande.filter((p) => p.id !== product.id);
-    this.saveCommande();
+    this.save();
   }
 
   changeQuantity(product, quantity) {
@@ -33,9 +33,9 @@ export default class Commande {
     if (foundProduct !== undefined) {
       foundProduct.quantity += quantity;
       if (foundProduct.quantity <= 0) {
-        this.removeCommande(foundProduct);
+        this.remove(foundProduct);
       } else {
-        this.saveCommande();
+        this.save();
       }
     }
   }
