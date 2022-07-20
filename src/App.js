@@ -24,6 +24,10 @@ function App() {
     window.location.reload();
   }
 
+  function storageClear() {
+    localStorage.clear();
+  }
+
   return (
     <BrowserRouter>
       <div className='header'>
@@ -155,14 +159,38 @@ function App() {
             return (
               <div>
                 <p>{event.name}</p>
-                <p>Prix : {event.price} €</p>
+                <p>Prix : {panier.getTotalPrice()} €</p>
                 <p>Quantité : {event.quantity}</p>
-                <button className='quantity'>-</button>
-                <button className='quantity'>+</button>
+                <button
+                  className='quantity'
+                  onClick={() => {
+                    panier.changeQuantity({ id: event.id }, -1);
+                    refreshPage();
+                  }}
+                >
+                  -
+                </button>
+                <button
+                  className='quantity'
+                  onClick={() => {
+                    panier.changeQuantity({ id: event.id }, 1);
+                    refreshPage();
+                  }}
+                >
+                  +
+                </button>
               </div>
             );
           })}
-          <button className='cancel'>Annuler</button>
+          <button
+            className='cancel'
+            onClick={() => {
+              storageClear();
+              refreshPage();
+            }}
+          >
+            Annuler
+          </button>
           <button className='pay'>Valider et payer</button>
         </div>
       </div>
