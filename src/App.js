@@ -47,7 +47,7 @@ function App() {
             background: isActive ? 'aliceblue' : '#dce4eb',
           })}
         >
-          Sandwich
+          Burger - Sandwich
         </NavLink>
         <NavLink
           to='/boisson'
@@ -70,7 +70,16 @@ function App() {
       </div>
       <div className='App'>
         <Routes>
-          <Route path='/' element={'Accueil'} exact />
+          <Route
+            path='/'
+            element={
+              <p className='bienvenue'>
+                Bonjour, bienvenue à <br />
+                l'interface de commande
+              </p>
+            }
+            exact
+          />
           <Route
             path='/sandwich'
             element={
@@ -78,13 +87,19 @@ function App() {
                 {sandwiches.map((sandwitch) => (
                   <div className='carteItem'>
                     <p className='bold'>{sandwitch.name}</p>
-                    <p>Prix : {sandwitch.price} €</p>
+                    <img
+                      class='pictureProduct'
+                      src={sandwitch.picture}
+                      alt='burger'
+                    />
+                    <p>{sandwitch.price} €</p>
                     <button
                       className='ajouter'
                       onClick={() => {
                         panier.add({
                           id: sandwitch.id,
                           name: sandwitch.name,
+                          picture: sandwitch.picture,
                           price: sandwitch.price,
                         });
                         refreshPage();
@@ -157,7 +172,12 @@ function App() {
             return (
               <div className='cartInCart'>
                 <p className='bold'>{event.name}</p>
-                <p>Prix : {panier.getTotalPrice()} €</p>
+                <img
+                  class='pictureProductCart'
+                  src={event.picture}
+                  alt='product'
+                />
+                <p>Prix du lot : {event.price * event.quantity} €</p>
                 <p>Quantité : {event.quantity}</p>
                 <button
                   className='quantity'
@@ -180,6 +200,11 @@ function App() {
               </div>
             );
           })}
+          <p className='bold'>
+            Prix total à payer
+            <br />
+            <span className='priceCenter'>{panier.getTotalPrice()} €</span>
+          </p>
           <button
             className='cancel'
             onClick={() => {

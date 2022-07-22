@@ -16,6 +16,31 @@
     transition: 250ms background-color ease;
   }
 }
+
+.bienvenue {
+  font-size: 50px;
+  margin-top: 12%;
+  margin-right: 12%;
+}
+
+.priceCenter {
+  margin-left: 50px;
+}
+
+.pictureProduct {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.pictureProductCart {
+  width: 75px;
+  height: 75px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
 .carte {
   border: solid;
   border-radius: 8px;
@@ -28,7 +53,7 @@
   grid-column-gap: 24px;
   grid-row-gap: 16px;
   width: 1400px;
-  height: 100vh;
+  height: auto;
 }
 
 .carteItem {
@@ -58,7 +83,8 @@
   cursor: pointer;
   border-radius: 4px;
   background-color: cornflowerblue;
-  margin-top: 30px;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 .quantity {
